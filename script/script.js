@@ -11,6 +11,7 @@ const phoneCode = document.querySelector(`#phonecode`);
 const phoneInput = document.querySelector(`#phone`);
 const passwordInput = document.querySelector(`#password`);
 const confirmPasswordInput = document.querySelector(`#confirm-password`);
+const formBtn = document.querySelector('#form-btn');
 
 //Validacion
 let usernameValidation = false;
@@ -18,12 +19,15 @@ let emailValidation = false;
 let phoneValidation = false;
 let passwordValidation = false;
 let confirmPasswordValidation = false;
+let countriesValidation = false;
 
 //Funcion
 
 const validation = (e, validation, element) => {
     // e = event
   const information = e.target.parentElement.children[1];
+  //Ahora vamos a validar que todos los datos sean validados para habilitar el boton de registro
+ formBtn.disabled = !usernameValidation || !emailValidation || !phoneValidation || !passwordValidation || !confirmPasswordValidation || !countriesValidation ? true : false;
   if (validation) {
     //Se esta agregando el color a la linea del imput
     element.classList.add(`correct`);
@@ -56,6 +60,9 @@ countries.addEventListener(`input`, e => {
   const optionSelected = [...e.target.children].find(
     option => option.selected);
   phoneCode.innerHTML = `+${optionSelected.value}`
+  countriesValidation = optionSelected.value !== '' ? true : false;
+  countries.classList.add('correct');
+  phoneCode.classList.add('correct');
 });
 
 phoneInput.addEventListener('input', e => {

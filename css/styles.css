@@ -102,6 +102,11 @@ select {
   border-radius: 0.5rem;
   padding: 1rem;
   color: #000;
+  cursor: pointer;
+}
+#form-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 @media (min-width: 640px) {
